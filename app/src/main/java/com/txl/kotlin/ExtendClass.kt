@@ -81,3 +81,30 @@ class Bar2(override val count: Int) : Foo1
 class Bar3 : Foo1 {
     override var count: Int = 0
 }
+
+open class A {
+    open fun f() { print("A") }
+    fun a() { print("a") }
+}
+
+interface B {
+    fun f() { print("B") } // 接口成员默认就是“open”的
+    fun b() { print("b") }
+}
+
+class C() : A(), B {
+    // 编译器要求覆盖 f()：
+    override fun f() {
+        super<A>.f() // 调用 A.f()
+        super<B>.f() // 调用 B.f()
+    }
+}
+
+/**
+ * 伴生对象
+ * 与 Java 或 C# 不同，在 Kotlin 中类没有静态方法。在大多数情况下，它建议简单地使用包级函数。
+ * 如果你需要写一个可以无需用一个类的实例来调用、但需要访问类内部的函数（例如，工厂方法），你可以把它写成该类内对象
+ * 声明中的一员。
+ * 更具体地讲，如果在你的类内声明了一个伴生对象， 你就可以使用像在 Java/C# 中调用静态方法相同的语法来调用其成员，只
+ * 使用类名作为限定符
+ * */
