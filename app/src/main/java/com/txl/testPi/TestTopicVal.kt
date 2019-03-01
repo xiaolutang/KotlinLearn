@@ -17,5 +17,7 @@ class TestTopicVal{
 
     fun setB(a:MainActivity){
         a.b = 10
+
+
     }
 }
