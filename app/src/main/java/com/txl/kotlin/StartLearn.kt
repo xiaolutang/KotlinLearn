@@ -58,6 +58,7 @@ fun createVariable(){
  * 创建顶层变量
  * */
 val PI = 3.14
+val ppi = 3.15
 var x = 0
 
 fun incrementX() {
